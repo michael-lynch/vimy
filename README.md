@@ -2,6 +2,10 @@
 
 A simple, lightweight jQuery plugin used to display videos from a Vimeo account.
 
+The plugin allows you to display videos independently or as a gallery. The gallery mode displays one featured video with image thumbnails of the other videos. Clicking on the image thumbnail will replace the featured video.
+
+Videos are displayed as simple list items allowing you to style them as you wish.
+
 <a href="http://michael-lynch.github.io/vimy/" target="_blank">See a demo</a>
 
 <a href="http://michael-lynch.github.io/vimy/gallery.html" target="_blank">See a demo of the gallery</a>

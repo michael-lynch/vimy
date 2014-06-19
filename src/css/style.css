@@ -1,0 +1,123 @@
+body {
+	font: 14px Helvetica, Arial, sans-serif;
+	line-height: 22px;
+	margin: 0;
+}
+
+p {
+	margin: 0 0 15px 0;
+}
+
+.wrapper {
+	float: left;
+	width: 100%;
+}
+
+.content-wrapper {
+	margin: 0 auto;
+	width: 90%;
+	max-width: 700px;
+}
+
+.vimy-videos {
+	margin: 40px 0;
+	padding: 0;
+	float: left;
+	width: 100%;
+}
+
+.vimy-videos > li {
+	margin: 0 0 40px 0;
+	list-style: none;
+	float: left;
+	width: 100%;
+}
+
+iframe {
+	margin: 0 0 20px 0;
+	width: 100%;
+	height: 200px;
+}
+
+.vimy-title {
+	font-size: 24px;
+	line-height: 30px;
+	margin: 0 0 5px 0;
+	color: #338AC0;
+}
+
+.vimy-date {
+	margin: 0 0 20px 0;
+}
+
+.vimy-tags {
+	margin: 0;
+	padding: 0;
+}
+
+.vimy-tags li {
+	list-style: none;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+.vimy-tags li a {
+	background: #48B9FF;
+	display: inline-block;
+	text-decoration: none;
+	float: left;
+	padding: 2px 10px;
+	font-size: 12px;
+	color: #fff;
+}
+
+.gallery > li {
+	margin: 0 5% 20px 0;
+	box-sizing: border-box;
+	float: left;
+	width: 47.5%;
+	height: 100px;
+	cursor: pointer;
+	opacity: 0.2;
+}
+
+.gallery > li.active {
+	opacity: 1;
+}
+
+.gallery > li:first-child {
+	width: 100%;
+	height: auto;
+	opacity: 1;
+}
+
+.gallery > li:nth-child(2n+1) {
+	margin-right: 0;
+}
+
+.gallery > li img {
+	width: 100%;
+	height: 100px;
+}
+
+@media screen and (min-width: 800px) {
+	
+	iframe {
+		height: 400px;
+	}
+	
+	.gallery > li {
+		margin: 0 5% 20px 0;
+		width: 30%;
+	}
+	
+	.gallery > li:nth-child(2n+1) {
+		margin-right: 5%;
+	}
+	
+	.gallery > li:nth-child(3n+1) {
+		margin-right: 0;
+	}
+	
+	
+}

@@ -66,7 +66,7 @@ tags: boolean
 <br /><em>A boolean that indicates whether you want the video tags to display (default: true).</em>
 
 success: function()
-<br /><em>A callback function that is triggered after the request, if the request is sucessful.</em>
+<br /><em>A callback function that is triggered after the request, if the request is successful.</em>
 
 error: function()
 <br /><em>A callback function that is triggered after the request, if the request is fails.</em>

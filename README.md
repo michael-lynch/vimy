@@ -16,18 +16,24 @@ Videos are displayed as simple list items allowing you to style them as you wish
 
 Include jQuery and the plugin in the head or footer of your page.
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+```html
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
-    <script src="/js/plugins/vimy.js"></script>
+<script src="/js/plugins/vimy.js"></script>
+```
     
 Create an unordered list where the videos will display.
 
-	<ul class="vimy-videos"></ul>
+```html
+<ul class="vimy-videos"></ul>
+```
 
     
 Initialize the plugin targeting the class, ID or element you've created. 
 
-	$('.vimy-videos').vimy();
+```js
+$('.vimy-videos').vimy();
+```
 	
 ####Options
 
@@ -68,22 +74,23 @@ error: function()
 
 #####Example:
 
-		$(function() {
-			
-			$('.vimy-videos').vimy({
-				username: 'brad',
-				gallery: true,
-				imgFormat: 'element',
-				limit: 5,
-				success: function() {
-					console.log('Videos were retrieved successfully.');
-				},
-				error: function() {
-					console.log('There was an error.');
-					$('.vimy-videos').remove();
-				}
-			});
-				
-		});
-			
+```js
+$(function() {
+	
+	$('.vimy-videos').vimy({
+		username: 'brad',
+		gallery: true,
+		imgFormat: 'element',
+		limit: 5,
+		success: function() {
+			console.log('Videos were retrieved successfully.');
+		},
+		error: function() {
+			console.log('There was an error.');
+			$('.vimy-videos').remove();
+		}
+	});
+		
+});
+```			
 		

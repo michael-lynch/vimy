@@ -22,7 +22,7 @@ Licensed under the MIT license
 
 		//define default parameters
         var defaults = {
-            username: 'brad',
+            username: null,
             gallery: false,
             imgFormat: 'bg',
             limit: 9,
@@ -162,23 +162,52 @@ Licensed under the MIT license
         el.each(function() {
   
 	        var thisEl = $(this);
+	        
+	        if(s.username !== '') {
         
-        	$.ajax({
-	        	method: 'GET',
-	        	url: 'http://vimeo.com/api/v2/'+s.username+'/videos.json',
-	        	success: function(r) {
-	        	
-	        		var total = (r.length < s.limit) ? r.length : s.limit;
-	        		
-	        		for(var i = 0; i < total; i++) {
-	        		
-	        			if(r[i].embed_privacy === 'anywhere') {
-	        			
-	        				if(s.gallery === true) {
-	        				
-	        					if(i === 0) {
+	        	$.ajax({
+		        	method: 'GET',
+		        	url: 'http://vimeo.com/api/v2/'+s.username+'/videos.json',
+		        	success: function(r) {
+		        	
+		        		var total = (r.length < s.limit) ? r.length : s.limit;
+		        		
+		        		for(var i = 0; i < total; i++) {
+		        		
+		        			if(r[i].embed_privacy === 'anywhere') {
+		        			
+		        				if(s.gallery === true) {
+		        				
+		        					if(i === 0) {
+			        					
+			        					firstVideo = constructVideo({
+				        					id: r[i].id,
+					        				title: r[i].title,
+					        				duration: r[i].duration,
+					        				date: r[i].upload_date,
+					        				description: r[i].description,
+					        				tags: r[i].tags 
+				        				});
+				        				
+				        				thisEl.append(firstVideo);
+			        				
+		        					}
 		        					
-		        					firstVideo = constructVideo({
+		        					video = constructVideoImage({
+						        		id: r[i].id,
+				        				title: r[i].title,
+				        				duration: r[i].duration,
+				        				date: r[i].upload_date,
+				        				description: r[i].description,
+				        				tags: r[i].tags,
+				        				img: r[i].thumbnail_large,
+				        				index: s.limit
+					        		});
+			        				
+			        				
+		        				} else {
+		        				
+		        					video = constructVideo({
 			        					id: r[i].id,
 				        				title: r[i].title,
 				        				duration: r[i].duration,
@@ -187,56 +216,36 @@ Licensed under the MIT license
 				        				tags: r[i].tags 
 			        				});
 			        				
-			        				thisEl.append(firstVideo);
-		        				
-	        					}
-	        					
-	        					video = constructVideoImage({
-					        		id: r[i].id,
-			        				title: r[i].title,
-			        				duration: r[i].duration,
-			        				date: r[i].upload_date,
-			        				description: r[i].description,
-			        				tags: r[i].tags,
-			        				img: r[i].thumbnail_large,
-			        				index: s.limit
-				        		});
-		        				
-		        				
-	        				} else {
-	        				
-	        					video = constructVideo({
-		        					id: r[i].id,
-			        				title: r[i].title,
-			        				duration: r[i].duration,
-			        				date: r[i].upload_date,
-			        				description: r[i].description,
-			        				tags: r[i].tags 
-		        				});
-		        				
-	        				}
+		        				}
+				        		
+				        		thisEl.append(video);
+			
+				        	} else {
+					        	
+					        	//increment limit because video was skipped due to it's privacy settings
+					        	
+					        	s.limit++;
+				        	}
 			        		
-			        		thisEl.append(video);
-		
-			        	} else {
-				        	
-				        	//increment limit because video was skipped due to it's privacy settings
-				        	
-				        	s.limit++;
-			        	}
+		        		}//for
 		        		
-	        		}//for
-	        		
-	        		el.children().eq(1).addClass('active');
-	        		
-	        		//run success callback function
-		        	plugin.settings.success.call(this);
-		        	
-	        	},
-	        	error: function() {
-		        	
-	        	}
-        	});
+		        		el.children().eq(1).addClass('active');
+		        		
+		        		//run success callback function
+			        	plugin.settings.success.call(this);
+			        	
+		        	},
+		        	error: function() {
+			        	
+		        	}
+	        	});
+	        	
+	        } else {
+		        
+		        console.log('A valid Vimeo username is required.');
+		        
+			    plugin.settings.error.call(this);
+	        }
         
         });
         
